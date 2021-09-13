@@ -1,0 +1,54 @@
+version: "2.0"
+
+stories:
+  - story: candidate details
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: add_candidate_info
+      - action: action_ask_name
+      - intent: user_name
+      - action: action_ask_empCode
+      - intent: user_empCode
+      - action: action_ask_emailId
+      - intent: user_emailid
+      - action: action_save_info
+
+  - story: delete candidate details
+    steps:
+      - intent: delete_candidateInfo
+      - action: utter_validate_record
+      - action: action_delete_info
+
+  - story: get candidate list
+    steps:
+      - intent: get_candidate_list
+      - action: utter_wait
+      - action: action_get_candidateList
+
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye

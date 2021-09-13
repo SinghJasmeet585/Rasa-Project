@@ -1,0 +1,39 @@
+version: "2.0"
+
+rules:
+  - rule: add candidate details anytime the user says add or insert
+    steps:
+      - intent: add_candidate
+      - action: add_candidate_form
+      - active_loop: add_candidate_form
+
+  - rule: submit form
+    condition:
+      - active_loop: add_candidate_form
+    steps:
+      - action: add_candidate_form
+      - active_loop: null
+      - action: utter_save_info
+      - action: action_save_info
+      - action: action_restart
+
+  - rule: delete the candidate details anytime user says delete
+    steps:
+      - intent: delete_candidateInfo
+      - action: action_delete_info
+      - action: action_restart
+
+  - rule: show candidate details anytime user says show or fetch
+    steps:
+      - intent: get_candidate_list
+      - action: action_get_candidateList
+
+  - rule: Say goodbye anytime the user says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Say 'I am a bot' anytime the user challenges
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot

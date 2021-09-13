@@ -1,0 +1,95 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - add_candidate
+  - delete_candidateInfo
+  - get_candidate_list
+
+entities:
+  - PERSON
+  - number
+  - email
+
+forms:
+  add_candidate_form:
+    required_slots:
+      name:
+        - type: from_text
+      empCode:
+        - type: from_text
+      emailid:
+        - type: from_text
+
+slots:
+  name:
+    type: text
+    influence_conversation: false
+  empCode:
+    type: any
+    influence_conversation: false
+  emailid:
+    type: any
+    influence_conversation: false
+
+responses:
+  utter_greet:
+    - text: "Hey! How are you?"
+
+  utter_ask_name:
+    - text: "What is the  full name of the candidate?"
+
+  utter_ask_empCode:
+    - text: "What is the  employee code of the candidate?"
+
+  utter_ask_emailid:
+    - text: "What is the email Id of the candidate?"
+
+  utter_save_info:
+    - text: "Thank you, Saving the info."
+
+  utter_validate_record:
+    - text: "Okay please wait while I validate the record."
+
+  utter_delete_successfull:
+    - text: "Deleted the record, Thank You."
+
+  utter_delete_Unsuccessfull:
+    - text: "Sorry, I can't find the record into the DataBase."
+
+  utter_wait:
+    - text: "Okay, Please wait"
+
+  utter_list:
+    - text: "Here is the list of all the candidates: "
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+actions:
+  - action_save_info
+  - action_delete_info
+  - action_get_candidateList
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,20 @@
+digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class=active, fontsize=12, label=action_session_start];
+2 [class="", fontsize=12, label=nomination_form];
+"-3" [class=ellipsis, label="..."];
+4 [class=active, fontsize=12, label=action_default_fallback];
+5 [class=active, fontsize=12, label=action_session_start];
+10 [class="dashed active", fontsize=12, label=action_default_fallback];
+11 [class=intent, fillcolor=lightblue, label="i want to nominate", shape=rect, style=filled];
+0 -> "-1"  [class="", key=NONE, label=""];
+0 -> 1  [class=active, key=NONE, label=""];
+1 -> 4  [class=active, key=NONE, label=""];
+1 -> 11  [class="", key=0];
+2 -> "-3"  [class="", key=NONE, label=""];
+4 -> 5  [class=active, key=NONE, label=""];
+5 -> 4  [class=active, key=NONE, label=""];
+5 -> 10  [class=active, key=NONE, label=""];
+11 -> 2  [class="", key=0];
+}

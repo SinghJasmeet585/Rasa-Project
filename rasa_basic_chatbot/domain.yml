@@ -1,0 +1,65 @@
+version: "2.0"
+
+intents:
+  - greet
+  - user_name:
+      use_entities:
+        - PERSON
+  - user_number:
+      use_entities:
+        - number
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+entities:
+  - PERSON
+  - number
+
+slots:
+  PERSON:
+    type: any
+    influence_conversation: false
+  number:
+    type: any
+    influence_conversation: false
+
+responses:
+  utter_greet:
+    - text: "Hey! What is your name?"
+
+  utter_user_name:
+    - text: "Nice to meet you {PERSON}"
+
+  utter_user_number:
+    - text: "What is your contact number?"
+
+  utter_user_number_display:
+    - text: Thank you for the input, Your name is {PERSON} and your number is {number}.
+
+  utter_cheer_up:
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "Did that help you?"
+
+  utter_happy:
+    - text: "Great, carry on!"
+
+  utter_goodbye:
+    - text: "Bye"
+
+  utter_iamabot:
+    - text: "I am a bot, powered by Rasa."
+
+actions:
+  - action_ask_user_number
+  - action_ask_user_name
+  - action_display_user_details
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
